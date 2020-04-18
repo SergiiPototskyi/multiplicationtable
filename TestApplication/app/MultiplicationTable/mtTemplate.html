@@ -1,0 +1,22 @@
+﻿<div>
+    <h4>{{ tableName }}</h4>
+    <br />
+    <input type="number" ng-model="tableLimit" min="3" max="15" />
+    <select ng-select ng-model="mode">
+        <option ng-repeat="option in displayOptions" ng-value="option">{{option}}</option>
+    </select>
+    <br />
+    <br />
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <td>X</td>
+                <td class="bg-blue" ng-repeat="x in x_numbers | limitTo: tableLimit">{{displayFormat(x)}}</td>
+            </tr>
+            <tr ng-repeat="y in y_numbers | limitTo: tableLimit">
+                <td class="bg-blue">{{displayFormat(y)}}</td>
+                <td ng-class="(x == y) ? 'bg-blue': isPrime(x * y) ? 'bg-prime' : ''" tooltip="{{displayFormat(x) + ' * ' + displayFormat(y)}}" tooltip-placement="top" ng-repeat="x in x_numbers | limitTo: tableLimit">{{displayFormat(x * y)}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
